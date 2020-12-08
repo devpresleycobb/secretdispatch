@@ -1,28 +1,25 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app id="app">
+    <receive v-if="token" :token="token"></receive>
+    <share v-else></share>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Receive from './components/Receive.vue';
+import Share from './components/Share';
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    Share,
+    Receive,
+  },
+  computed: {
+    token() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('token');
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
