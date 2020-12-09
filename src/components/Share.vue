@@ -34,7 +34,7 @@
                     <v-card-title class="headline">
                         Sharing information:
                     </v-card-title>
-                    <v-card-text>Share Link: {{shareLink}}</v-card-text>
+                    <v-card-text>Share Link: {{shareLink}} <v-icon @click="copy">content_copy</v-icon><v-icon v-if="copied" color="green">done</v-icon></v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn
@@ -46,6 +46,7 @@
                         </v-btn>
                     </v-card-actions>
                 </v-card>
+                <input type="text" class="shareLink" id="link" :value="shareLink">
             </v-dialog>
         </v-row>
     </div>
@@ -75,6 +76,12 @@
             this.shareId = body;
             this.loading = false;
             this.shareDialog = true;
+        },
+        copy() {
+            var copyText = document.querySelector("#link");
+            copyText.select();
+            document.execCommand("copy");
+            this.copied = true;
         },
         getEncryptor(key) {
             return require('simple-encryptor')(key);
@@ -122,6 +129,7 @@
         loading: false,
         shareDialog: false,
         encryptor: null,
+        copied: false,
     }),
     }
 </script>

@@ -8,6 +8,7 @@ import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
 import 'vuetify/dist/vuetify.min.css';
 import './assets/css/style.css';
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.use(VueQuillEditor)
 
